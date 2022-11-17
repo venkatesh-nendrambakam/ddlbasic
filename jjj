@@ -1,0 +1,17 @@
+create 
+type t1 is table of varchar2(10);
+index by binary_integer
+v_t t1;
+cursor c1 is select * from emp where sal>2000;
+i number(100):=0
+begin
+open c1 ;
+loop
+fetch c1 into v_t;
+dbms_output.put-line(v_t(i));
+exit when c1%notfound;
+i=i+1;
+dbms_output.put_line(v_t(i));
+end loop;
+close c1;
+end;
